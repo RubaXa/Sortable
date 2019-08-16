@@ -95,6 +95,7 @@ function AutoScrollPlugin() {
 		},
 
 		_handleAutoScroll(evt, fallback) {
+			var _this = this;
 			const x = (evt.touches ? evt.touches[0] : evt).clientX,
 				y = (evt.touches ? evt.touches[0] : evt).clientY,
 
@@ -127,7 +128,7 @@ function AutoScrollPlugin() {
 							ogElemScroller = newElem;
 							clearAutoScrolls();
 						}
-						autoScroll(evt, this.sortable.options, newElem, fallback);
+						autoScroll(evt, _this.sortable.options, newElem, fallback);
 					}, 10);
 					lastAutoScrollX = x;
 					lastAutoScrollY = y;
@@ -241,7 +242,7 @@ const autoScroll = throttle(function(evt, options, rootEl, isFallback) {
 
 			clearInterval(autoScrolls[layersOut].pid);
 
-			if (vx != 0 || vy != 0) {
+			if (vx !== 0 || vy !== 0) {
 				scrollThisInstance = true;
 				/* jshint loopfunc:true */
 				autoScrolls[layersOut].pid = setInterval((function () {
